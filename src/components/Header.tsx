@@ -28,8 +28,8 @@ const Header: React.FC = () => {
           ? 'shadow-[0_15px_40px_rgba(0,0,0,0.08)] dark:shadow-2xl border-stone-200 dark:border-white/10' 
           : 'border-transparent'
         } ${
-          theme === 'light' ? 'bg-white/95 backdrop-blur-2xl' : 'bg-black/70 backdrop-blur-xl'
-        }`}>
+          theme === 'light' ? 'bg-white/95' : 'bg-black/70'
+        } backdrop-blur-2xl`}>
           <div className="flex items-center">
             <span className="text-xl font-black tracking-tighter cursor-pointer brand-font flex items-center gap-2" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
               <span className="bg-black dark:bg-amber-400 text-white dark:text-black px-3 py-1 rounded-lg transition-all shadow-xl">SASHKA</span>

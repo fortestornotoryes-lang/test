@@ -42,7 +42,8 @@ const App: React.FC = () => {
 
   const [theme, setTheme] = useState<Theme>(() => {
     const saved = localStorage.getItem('theme');
-    return (saved as Theme) || 'light';
+    if (saved) return saved as Theme;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
   const setLang = useCallback((newLang: Language) => {
@@ -66,7 +67,7 @@ const App: React.FC = () => {
 
   return (
     <AppContext.Provider value={{ lang, setLang, theme, toggleTheme, t }}>
-      <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-black dark:text-stone-100 transition-colors duration-500 selection:bg-amber-100 dark:selection:bg-amber-900">
+      <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-black dark:text-stone-100 transition-colors duration-500 selection:bg-amber-100 dark:selection:bg-amber-900 font-sans">
         <Header />
         <Hero />
         
@@ -78,11 +79,11 @@ const App: React.FC = () => {
           <About />
         </FadeInSection>
         
-        <section className="bg-black dark:bg-amber-700 py-24 text-center text-white px-4 relative overflow-hidden">
+        <section className="bg-black py-24 text-center text-white px-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent opacity-20"></div>
           <h2 className="text-4xl md:text-7xl font-black mb-6 uppercase tracking-tighter relative z-10">{t.ctaSection.title}</h2>
           
-          <p className="max-w-2xl mx-auto text-xl text-stone-400 dark:text-amber-100 mb-12 font-bold italic relative z-10">
+          <p className="max-w-2xl mx-auto text-xl text-stone-400 mb-12 font-bold italic relative z-10">
             {t.ctaSection.subtitle}
           </p>
           
