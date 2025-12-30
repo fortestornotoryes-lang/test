@@ -20,6 +20,8 @@ interface AppContextType {
   t: typeof translations.ua;
 }
 
+console.log(1);
+
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const useAppContext = () => {
