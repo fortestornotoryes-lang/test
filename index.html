@@ -3,11 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сашка робить красиво | Реставрація & Кастом</title>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- SEO Meta Tags (Default: UK) -->
+    <title>Сашка робить красиво — Ремонт та реставрація взуття, сумок, шкіри в Одесі</title>
+    <meta name="description" content="Професійний ремонт, хімчистка та повна реставрація взуття, сумок та шкіряних виробів в Одесі на Дерибасівській. Якість преміум-класу, досвідчені майстри.">
+    <meta name="keywords" content="ремонт взуття одеса, реставрація сумок одеса, хімчистка взуття, фарбування шкіри, ремонт шкіряних курток, сашка робить красиво, дерибасівська ремонт взуття, реставрація шкіри одеса, ремонт обуви одесса, покраска кожи">
+    <meta name="author" content="Sashka Studio">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sashka-remont.od.ua">
+
+    <!-- Теги для Google: вказуємо на наявність двох мовних версій -->
+    <link rel="alternate" hreflang="uk" href="https://sashka-remont.od.ua/" />
+    <link rel="alternate" hreflang="ru" href="https://sashka-remont.od.ua/" />
+    <link rel="alternate" hreflang="x-default" href="https://sashka-remont.od.ua/" />
+
+    <!-- Anti-Flash Theme Script -->
+    <script>
+		(function() {
+			try {
+				var theme = localStorage.getItem('theme');
+				var supportDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (theme === 'dark' || (!theme && supportDark)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			} catch (e) {}
+		})();
+    </script>
+
+    <!-- Open Graph (Для соцмереж та месенджерів) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sashka-remont.od.ua">
+    <meta property="og:title" content="Сашка робить красиво — Реставрація & Кастом в Одесі">
+    <meta property="og:description" content="Повернемо вашим улюбленим речам первісний вигляд. Професійна реставрація шкіри та преміум догляд на Дерибасівській.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?auto=format&fit=crop&q=80&w=1200">
+    <meta property="og:locale" content="uk_UA">
+    <meta property="og:locale:alternate" content="ru_UA">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Сашка робить красиво — Реставрація взуття та сумок">
+    <meta property="twitter:description" content="Професійний ремонт та реставрація шкіряних виробів в Одесі.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- Зовнішні стилі -->
     <link rel="stylesheet" href="src/index.css">
 </head>
-<body class="smooth-scroll transition-colors duration-500">
+<body class="smooth-scroll ">
 <div id="root"></div>
 <script type="module" src="src/index.tsx"></script>
 </body>

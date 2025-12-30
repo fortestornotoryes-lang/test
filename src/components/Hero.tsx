@@ -9,7 +9,6 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Використовуємо requestAnimationFrame для плавної анімації без навантаження на процесор
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
       requestRef.current = requestAnimationFrame(() => {
         setOffsetY(window.pageYOffset);
@@ -23,71 +22,85 @@ const Hero: React.FC = () => {
     };
   }, []);
 
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-black transition-colors duration-700">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white dark:bg-black transition-colors duration-700">
       <div 
-        className="absolute inset-0 z-0 opacity-20 dark:opacity-40 grayscale will-change-transform"
+        className="absolute inset-0 z-0 opacity-15 dark:opacity-30 grayscale will-change-transform"
         style={{ transform: `translateY(${offsetY * 0.2}px) scale(1.05)` }}
       >
         <img
-          src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?auto=format&fit=crop&q=70&w=1200"
+          src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?auto=format&fit=crop&q=75&w=1400"
           className="w-full h-full object-cover"
-          alt="Premium Leather Care"
+          alt="Професійна реставрація шкіряного взуття Одеса"
           loading="eager" 
         />
       </div>
 
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(#00000030_2px,transparent_2px)] dark:bg-[radial-gradient(#ffffff08_1.5px,transparent_1.5px)] [background-size:80px_80px]"></div>
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(#00000020_1px,transparent_1px)] dark:bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:40px_40px]"></div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-        <div className="flex flex-col lg:flex-row items-end gap-20">
-          <div className="flex-1">
-            <div className="inline-flex items-center gap-4 bg-black dark:bg-amber-400 text-white dark:text-black px-8 py-3 text-sm font-black tracking-[0.4em] uppercase mb-12 rounded-full shadow-2xl">
-              <span className="w-3 h-3 bg-amber-500 dark:bg-black rounded-full animate-pulse"></span>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <div className="flex flex-col lg:flex-row items-center lg:items-end gap-12 lg:gap-20">
+          <div className="flex-1 text-center lg:text-left">
+            <div className="inline-flex items-center gap-3 bg-black dark:bg-amber-400 text-white dark:text-black px-6 py-2 text-[10px] font-black tracking-[0.4em] uppercase mb-8 rounded-full shadow-lg">
+              <span className="w-2 h-2 bg-amber-500 dark:bg-black rounded-full animate-pulse"></span>
               SASHKA STUDIO | ODESSA
             </div>
             
             <h1 
-              className="text-7xl md:text-[10rem] font-black mb-12 leading-[0.8] tracking-tighter text-black dark:text-white transition-colors uppercase"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-8 leading-[0.9] tracking-tighter text-black dark:text-white transition-colors uppercase"
               dangerouslySetInnerHTML={{ __html: t.hero.title }}
             />
             
-            {/* Виправлено: Текст тепер text-black для кращої видимості */}
-            <p className="text-black dark:text-stone-400 text-2xl md:text-4xl mb-16 max-w-3xl font-black leading-tight border-l-[12px] border-black dark:border-amber-400 pl-12 transition-all">
+            <p className="text-black dark:text-stone-400 text-lg md:text-xl lg:text-2xl mb-12 max-w-2xl mx-auto lg:mx-0 font-bold leading-tight border-stone-200 dark:border-amber-400 lg:border-l-[6px] lg:pl-8 transition-all">
               {t.hero.subtitle}
             </p>
             
-            <div className="flex flex-wrap gap-10">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6">
               <a
                 href="#services"
-                className="group relative bg-black dark:bg-amber-400 text-white dark:text-black px-16 py-8 rounded-2xl font-black text-base uppercase tracking-[0.2em] transition-all hover:scale-105 active:scale-95 shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
+                onClick={(e) => handleScrollTo(e, 'services')}
+                className="group relative bg-black dark:bg-amber-400 text-white dark:text-black px-8 py-4 md:px-12 md:py-6 rounded-xl font-black text-xs md:text-sm uppercase tracking-[0.2em] transition-all hover:scale-105 active:scale-95 shadow-xl"
               >
-                <span className="relative z-10">{t.hero.priceBtn}</span>
-                <div className="absolute inset-0 bg-amber-600 opacity-0 group-hover:opacity-20 transition-opacity rounded-2xl"></div>
+                {t.hero.priceBtn}
               </a>
               <a
                 href="#contacts"
-                className="bg-white dark:bg-white/5 backdrop-blur-md text-black dark:text-white border-4 border-black dark:border-white/20 px-16 py-8 rounded-2xl font-black text-base uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all shadow-2xl"
+                onClick={(e) => handleScrollTo(e, 'contacts')}
+                className="bg-white dark:bg-white/5 backdrop-blur-md text-black dark:text-white border-2 border-black dark:border-white/20 px-8 py-4 md:px-12 md:py-6 rounded-xl font-black text-xs md:text-sm uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all"
               >
                 {t.hero.findBtn}
               </a>
             </div>
           </div>
           
-          <div className="hidden lg:block w-96 transform translate-y-20 will-change-transform">
-             <div className={`${theme === 'light' ? 'bg-white shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] border-4 border-black' : 'bg-stone-900 shadow-2xl border-white/5'} p-12 rounded-[4rem] rotate-3 hover:rotate-0 transition-all duration-1000 transform-gpu`}>
-                <div className="flex gap-2 text-amber-600 text-4xl mb-8">★★★★★</div>
-                <p className="text-xl text-black dark:text-stone-300 italic mb-10 leading-relaxed font-black uppercase tracking-tight">"Сашка таки робить красиво. Мої старі снікерси тепер виглядають краще за нові з бутіка!"</p>
-                <div className="flex items-center gap-5">
-                  <div className="w-16 h-16 rounded-full bg-black text-white flex items-center justify-center font-black text-xl">AS</div>
-                  <p className="text-xs font-black text-black dark:text-stone-400 uppercase tracking-widest">— Преміум Клієнт</p>
+          <div className="hidden lg:block w-80 transform translate-y-10">
+             <div className={`${theme === 'light' ? 'bg-white shadow-2xl border-2 border-black' : 'bg-stone-900 shadow-2xl border-white/5'} p-8 rounded-[3rem] rotate-2 hover:rotate-0 transition-all duration-700`}>
+                <div className="flex gap-1 text-amber-600 text-2xl mb-6">★★★★★</div>
+                <p className="text-base text-black dark:text-stone-300 italic mb-8 leading-relaxed font-black uppercase tracking-tight">"Сашка таки робить красиво. Мої старі снікерси тепер виглядають краще за нові з бутіка!"</p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center font-black text-sm">AS</div>
+                  <p className="text-[10px] font-black text-black dark:text-stone-400 uppercase tracking-widest">— Преміум Клієнт</p>
                 </div>
              </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute -bottom-24 -right-24 text-[30rem] font-black text-black/[0.08] dark:text-white/[0.02] select-none pointer-events-none whitespace-nowrap leading-none uppercase tracking-tighter transition-colors">
+      <div className="absolute -bottom-12 -right-12 text-huge font-black text-black/[0.04] dark:text-white/[0.02] select-none pointer-events-none whitespace-nowrap leading-none uppercase tracking-tighter transition-colors">
         STYLE
       </div>
     </section>

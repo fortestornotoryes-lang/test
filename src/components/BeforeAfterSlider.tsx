@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useCallback } from 'react';
-import { useLanguage } from '../App';
+// Исправляем ошибку импорта: в App.tsx экспортируется useAppContext, а не useLanguage
+import { useAppContext } from '../App';
 
 interface BeforeAfterSliderProps {
   before: string;
@@ -10,7 +11,8 @@ interface BeforeAfterSliderProps {
 const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({ before, after }) => {
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { t } = useLanguage();
+  // Используем useAppContext для получения доступа к переводам (t)
+  const { t } = useAppContext();
 
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
